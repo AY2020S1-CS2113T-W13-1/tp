@@ -30,19 +30,19 @@ public class AddDeadlineCommand extends TaskCommand {
         int startOfBy = fullCommand.indexOf("/by") + 4;
         int endOfBy = fullCommand.length();
         if (endOfMessage <= startOfMessage) {
-            throw new TaskDeadlineException(Ui.printDeadlineError());
+            throw new TaskDeadlineException(Ui.DEADLINE_EXCEPTION);
         }
-        String message = fullCommand.substring(startOfMessage, endOfMessage);
+        String message = fullCommand.substring(startOfMessage, endOfMessage).strip();
         String by = fullCommand.substring(startOfBy, endOfBy);
         DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm d-MM-yyyy");
         LocalDateTime dateTime = LocalDateTime.parse(by, format);
         if (message.isEmpty() || by.isEmpty()) {
-            throw new TaskDeadlineException(Ui.printDeadlineError());
+            throw new TaskDeadlineException(Ui.DEADLINE_EXCEPTION);
         } else {
             Task temp = new Deadline(message, false, dateTime);
             for (Task task : taskList.getList()) {
                 if (task.getDateTime().equals(temp.getDateTime())) {
-                    throw new RepeatedDateTimeException(Ui.printRepeatedDateTimeError(task));
+                    throw new RepeatedDateTimeException(Ui.repeatedDateTimeException(task));
                 }
             }
             taskList.getList().add(temp);

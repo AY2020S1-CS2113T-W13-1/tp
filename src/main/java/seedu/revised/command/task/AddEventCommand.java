@@ -30,9 +30,9 @@ public class AddEventCommand extends TaskCommand {
         int startOfAt = fullCommand.indexOf("/at") + 4;
         int endOfAt = fullCommand.length();
         if (endOfMessage <= startOfMessage) {
-            throw new TaskEventException(Ui.printEventError());
+            throw new TaskEventException(Ui.EVENT_EXCEPTION);
         }
-        String message = fullCommand.substring(startOfMessage, endOfMessage);
+        String message = fullCommand.substring(startOfMessage, endOfMessage).strip();
         String at = fullCommand.substring(startOfAt, endOfAt);
 
         DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm d-MM-yyyy");
@@ -40,12 +40,12 @@ public class AddEventCommand extends TaskCommand {
 
 
         if (message.isEmpty() || at.isEmpty()) {
-            throw new TaskEventException(Ui.printEventError());
+            throw new TaskEventException(Ui.EVENT_EXCEPTION);
         }
         Task temp = new Event(message, false, dateTime);
         for (Task task : taskList.getList()) {
             if (task.getDateTime().equals(temp.getDateTime())) {
-                throw new RepeatedDateTimeException(Ui.printRepeatedDateTimeError(task));
+                throw new RepeatedDateTimeException(Ui.repeatedDateTimeException(task));
             }
         }
         taskList.getList().add(temp);

@@ -36,14 +36,14 @@ public class ReturnSubjectCommand extends SubjectCommand {
         String[] message = this.fullcommand.split(" ");
         //Subject currentSubject = new Subject(message[1]);
         if (message[1].isEmpty()) {
-            throw new NoSubjectException(Ui.printNoSubjectError());
+            throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
         }
         for (Subject subject : subjectList.getList()) {
             if (subject.getTitle().equals(message[1])) {
                 return subject;
             }
         }
-        throw new NoSubjectException(Ui.printNoSubjectError());
+        throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
     }
 
     public void goToSubject(Subject subject) {
@@ -68,35 +68,15 @@ public class ReturnSubjectCommand extends SubjectCommand {
                 }
 
                 isSubjectExit = c.isExit();
-                //TODO: implement the storage methods for Topic
-                //topics.saveSubject(topicStorage.getFileName());
-                //} catch (IOException e) {
-                //Ui.printWritingError();
 
-            } catch (NoTopicException e) {
-                System.out.println(e.getMessage());
-            } catch (TaskTodoException e) {
-                System.out.println(e.getMessage());
-            } catch (TaskDeadlineException e) {
-                System.out.println(e.getMessage());
-            } catch (TaskEventException e) {
-                System.out.println(e.getMessage());
-            } catch (FailedParseException e) {
-                System.out.println(e.getMessage());
-            } catch (NoFlashcardException e) {
-                System.out.println(e.getMessage());
-            } catch (InvalidTopicException e) {
-                System.out.println(e.getMessage());
             } catch (NumberFormatException e) {
-                System.out.println(Ui.printIndexError());
+                Ui.printErrorMsg(Ui.INDEX_FORMAT_EXCEPTION);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println(Ui.printOutOfBoundsError());
+                Ui.printErrorMsg(Ui.INDEX_OUT_OF_BOUND_EXCEPTION);
             } catch (IllegalArgumentException | DateTimeParseException d) {
-                System.out.println(Ui.printInvalidFormatError());
-            } catch (RepeatedDateTimeException e) {
-                System.out.println(e.getMessage());
+                Ui.printErrorMsg(Ui.INVALID_DATETIME_EXCEPTION);
             } catch (Exception e) {
-                System.out.println(Ui.printError(e));
+                Ui.printError(e);
             }
         }
         Ui.printBackToSubjects();

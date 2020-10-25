@@ -25,7 +25,7 @@ public class QuizTopicCommand extends TopicCommand {
         logger.info("Begin finding the topic for which the quiz has to be conducted.");
         String[] message = this.fullcommand.split(" ");
         if (message.length == 1) {
-            throw new InvalidTopicException(Ui.printInvalidTopicError());
+            throw new InvalidTopicException(Ui.INVALID_TOPIC_EXCEPTION);
         }
         Topic quizTopic = null;
         for (Topic topic : subject.getTopics().getList()) {
@@ -34,7 +34,7 @@ public class QuizTopicCommand extends TopicCommand {
             }
         }
         if (quizTopic == null) {
-            throw new NoTopicException(Ui.printNoTopicError());
+            throw new NoTopicException(Ui.TOPIC_NOT_FOUND_EXCEPTION);
         }
         logger.info("Finish reading the command to find the topic for the quiz feature");
         logger.fine(String.format("The subject is %s",quizTopic.getTitle()));

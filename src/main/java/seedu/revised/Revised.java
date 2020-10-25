@@ -97,31 +97,19 @@ public class Revised {
                     c.execute(subjects);
                 }
                 isExit = c.isExit();
-            }  catch (NoSubjectException e) {
-                System.out.println(e.getMessage());
-            } catch (RepeatedSubjectException e) {
-                System.out.println(e.getMessage());
-            } catch (NoFlashcardException e) {
-                System.out.println(e.getMessage());
-            } catch (NoTopicException e) {
-                System.out.println(e.getMessage());
-            } catch (InvalidSubjectException e) {
-                System.out.println(e.getMessage());
-            } catch (FailedParseException e) {
-                System.out.println(e.getMessage());
             } catch (IndexOutOfBoundsException e) {
-                System.out.println(Ui.printOutOfBoundsError());
+                Ui.printErrorMsg(Ui.INDEX_OUT_OF_BOUND_EXCEPTION);
             } catch (NumberFormatException e) {
-                System.out.println(Ui.printIndexError());
+                Ui.printErrorMsg(Ui.INDEX_FORMAT_EXCEPTION);
             } catch (Exception e) {
-                System.out.println(Ui.printError(e));
+                Ui.printError(e);
             }
         }
 
         try {
             storage.saveSubjects(subjects.getList());
         } catch (IOException e) {
-            System.out.println(Ui.printWritingError());
+            Ui.printErrorMsg(Ui.WRITING_EXCEPTION);
         }
 
         Ui.printBye();
@@ -133,7 +121,7 @@ public class Revised {
             new Revised(BASE_DIR, EXPORT_DIR, FLASHCARD_FILENAME, TASK_FILENAME, RESULT_FILENAME, EXPORT_FILENAME)
                     .run();
         } catch (DataLoadingException e) {
-            System.out.println(e.getMessage());
+            Ui.printError(e);
         } finally {
             logger.info("Application exits.");
         }

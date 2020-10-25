@@ -68,7 +68,7 @@ public class Storage {
         } else {
             File[] subjectDirs = baseDir.listFiles(File::isDirectory);
             if (subjectDirs == null) {  // error in getting the directories even if they may exist
-                throw new DataLoadingException(Ui.printDataLoadingError());
+                throw new DataLoadingException(Ui.DATA_LOADING_EXCEPTION);
             }
             subjects = loadSubjects(subjectDirs);
         }
@@ -92,7 +92,7 @@ public class Storage {
         for (File subjectDir : subjectDirs) {
             File[] topicDirs = subjectDir.listFiles(File::isDirectory);
             if (topicDirs == null) {
-                throw new DataLoadingException(Ui.printDataLoadingError());
+                throw new DataLoadingException(Ui.DATA_LOADING_EXCEPTION);
             }
 
             List<Topic> topics = loadTopics(topicDirs);

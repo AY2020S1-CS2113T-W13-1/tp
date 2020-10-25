@@ -34,7 +34,7 @@ public class TopicQuiz extends Quiz {
     public void setUpQuiz() throws NoFlashcardException {
         logger.info("Start setting up the quiz for the topic");
         if (this.flashcards.size() == 0) {
-            throw new NoFlashcardException(Ui.printNoFlashcardsError());
+            throw new NoFlashcardException(Ui.NO_FLASHCARD_EXCEPTION);
         }
         this.result.setMaxScore(this.flashcards.size());
         logger.info("Finished setting up the quiz");

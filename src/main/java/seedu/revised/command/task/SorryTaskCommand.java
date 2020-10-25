@@ -6,7 +6,7 @@ import seedu.revised.ui.Ui;
 public class SorryTaskCommand extends TaskCommand {
 
     public void execute() throws FailedParseException {
-        throw new FailedParseException(Ui.printFailedParseError());
+        throw new FailedParseException(Ui.FAILED_PARSE_EXCEPTION);
     }
 
     /**

@@ -26,7 +26,7 @@ public class QuizSubjectCommand extends SubjectCommand {
         String[] message = this.fullcommand.split(" ");
         Subject quizSubject = null;
         if (message.length == 1) {
-            throw new InvalidSubjectException(Ui.printInvalidSubjectError());
+            throw new InvalidSubjectException(Ui.INVALID_SUBJECT_EXCEPTION);
         }
         for (Subject subject : subjectList.getList()) {
             if (subject.toString().contains(message[1])) {
@@ -34,7 +34,7 @@ public class QuizSubjectCommand extends SubjectCommand {
             }
         }
         if (quizSubject == null) {
-            throw new NoSubjectException(Ui.printNoSubjectError());
+            throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
         }
         logger.info("Finish reading the command to find the subject for the quiz feature");
         logger.fine(String.format("The subject is %s",quizSubject.getTitle()));

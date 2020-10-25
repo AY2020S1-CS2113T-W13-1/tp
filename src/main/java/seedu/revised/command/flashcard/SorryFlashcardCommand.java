@@ -8,7 +8,7 @@ import seedu.revised.ui.Ui;
 public class SorryFlashcardCommand extends FlashcardCommand {
 
     public Flashcard execute(Topic topic) throws FailedParseException {
-        throw new FailedParseException(Ui.printFailedParseError());
+        throw new FailedParseException(Ui.FAILED_PARSE_EXCEPTION);
     }
 
     /**

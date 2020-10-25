@@ -22,7 +22,7 @@ public class ResultTopicCommand extends TopicCommand {
 
         String[] message = this.fullcommand.split(" ");
         if (message.length == 1) {
-            throw new InvalidTopicException(Ui.printInvalidTopicError());
+            throw new InvalidTopicException(Ui.INVALID_TOPIC_EXCEPTION);
         }
         Topic resultTopic = null;
         for (Topic topic : subject.getTopics().getList()) {
@@ -31,7 +31,7 @@ public class ResultTopicCommand extends TopicCommand {
             }
         }
         if (resultTopic == null) {
-            throw new NoTopicException(Ui.printNoTopicError());
+            throw new NoTopicException(Ui.TOPIC_NOT_FOUND_EXCEPTION);
         }
         logger.info("Finish reading the command to find the topic for the result feature.Now, the "
                 + "application prints" + "the results.");

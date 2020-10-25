@@ -8,7 +8,7 @@ import seedu.revised.ui.Ui;
 public class SorryTopicCommand extends TopicCommand {
 
     public Topic execute(Subject subject) throws FailedParseException {
-        throw new FailedParseException(Ui.printFailedParseError());
+        throw new FailedParseException(Ui.FAILED_PARSE_EXCEPTION);
     }
 
     /**

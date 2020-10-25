@@ -21,7 +21,7 @@ public class ResultSubjectCommand extends SubjectCommand {
         logger.info("Begin finding the subject for which the results feature has to be called.");
         String[] message = this.fullcommand.split(" ");
         if (message.length == 1) {
-            throw new InvalidSubjectException(Ui.printInvalidSubjectError());
+            throw new InvalidSubjectException(Ui.INVALID_SUBJECT_EXCEPTION);
         }
         Subject resultSubject = null;
 
@@ -31,7 +31,7 @@ public class ResultSubjectCommand extends SubjectCommand {
             }
         }
         if (resultSubject == null) {
-            throw new NoSubjectException(Ui.printNoSubjectError());
+            throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
         }
         assert (resultSubject != null) : "No such subject exists!";
         Ui.printSubjectResults(resultSubject);

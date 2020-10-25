@@ -21,16 +21,16 @@ public class AddSubjectCommand extends SubjectCommand {
         int startOfMessage = 4;
         int endOfMessage = fullCommand.length();
         if (endOfMessage <= startOfMessage) {
-            throw new NoSubjectException(Ui.printNoSubjectError());
+            throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
         }
-        String title = fullCommand.substring(startOfMessage, endOfMessage);
+        String title = fullCommand.substring(startOfMessage, endOfMessage).strip();
         if (title.isEmpty()) {
-            throw new NoSubjectException(Ui.printNoSubjectError());
+            throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
         }
         assert title != null;
         for (Subject subject : subjectList.getList()) {
             if (subject.getTitle().equals(title)) {
-                throw new RepeatedSubjectException(Ui.printRepeatedSubjectError());
+                throw new RepeatedSubjectException(Ui.REPEATED_SUBJECT_EXCEPTION);
             }
         }
         Subject temp = new Subject(title);

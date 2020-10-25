@@ -33,7 +33,7 @@ public class SubjectQuiz extends Quiz {
     public void setUpQuiz() throws NoFlashcardException, NoTopicException {
         logger.info("Start setting up the quiz");
         if (subject.getTopics().getList().size() == 0) {
-            throw new NoTopicException(Ui.printNoTopicsError());
+            throw new NoTopicException(Ui.NO_TOPIC_EXCEPTION);
         }
         int maxScore = 0;
         for (Topic topic : subject.getTopics().getList()) {
@@ -44,7 +44,7 @@ public class SubjectQuiz extends Quiz {
         this.result.setMaxScore(maxScore);
 
         if (this.flashcards.size() == 0) {
-            throw new NoFlashcardException(Ui.printNoFlashcardsError());
+            throw new NoFlashcardException(Ui.NO_FLASHCARD_EXCEPTION);
         }
         logger.info("Finished setting up the quiz");
         logger.fine(String.format("Max Score of quiz: %d", maxScore));

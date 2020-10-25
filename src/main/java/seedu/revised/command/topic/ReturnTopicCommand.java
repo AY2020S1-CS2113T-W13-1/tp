@@ -8,6 +8,7 @@ import seedu.revised.exception.flashcard.NoFlashcardException;
 import seedu.revised.exception.flashcard.RepeatedFlashcardException;
 import seedu.revised.exception.flashcard.RepeatedFlashcardException;
 import seedu.revised.exception.subject.NoSubjectException;
+import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.parser.FlashcardParser;
 import seedu.revised.task.TaskList;
 import seedu.revised.ui.Ui;
@@ -20,18 +21,17 @@ public class ReturnTopicCommand extends TopicCommand {
         this.fullcommand = fullcommand;
     }
 
-    public Topic execute(Subject subject) throws NoSubjectException {
+    public Topic execute(Subject subject) throws NoTopicException {
         String[] message = this.fullcommand.split(" ");
-        //Subject currentSubject = new Subject(message[1]);
         if (message[1].isEmpty()) {
-            throw new NoSubjectException(Ui.printNoSubjectError());
+            throw new NoTopicException(Ui.TOPIC_NOT_FOUND_EXCEPTION);
         }
         for (Topic topic : subject.getTopics().getList()) {
             if (topic.getTitle().equals(message[1])) {
                 return topic;
             }
         }
-        throw new NoSubjectException(Ui.printNoSubjectError());
+        throw new NoTopicException(Ui.TOPIC_NOT_FOUND_EXCEPTION);
     }
 
     public void goToTopic(Topic topic, Subject subject) {
@@ -43,16 +43,12 @@ public class ReturnTopicCommand extends TopicCommand {
                 FlashcardCommand c = FlashcardParser.parse(fullCommand);
                 isTopicExit = c.isExit();
                 c.execute(topic);
-            } catch (NoFlashcardException e) {
-                System.out.println(e.getMessage());
-            } catch (RepeatedFlashcardException e) {
-                System.out.println(e.getMessage());
-            } catch (FailedParseException e) {
-                System.out.println(e.getMessage());
             } catch (NumberFormatException e) {
-                System.out.println(Ui.printIndexError());
+                Ui.printErrorMsg(Ui.INDEX_FORMAT_EXCEPTION);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println(Ui.printOutOfBoundsError());
+                Ui.printErrorMsg(Ui.INDEX_OUT_OF_BOUND_EXCEPTION);
+            } catch (Exception e) {
+                Ui.printError(e);
             }
         }
         Ui.printBackToTopicsAndTasks();

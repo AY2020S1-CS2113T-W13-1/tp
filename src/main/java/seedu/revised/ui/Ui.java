@@ -19,19 +19,47 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Ui {
-    private static final String DIVIDER = "____________________________________________________________";
-    private static final String LONG_DIVIDER = "_______________________________________________________________________"
+    public static final String DIVIDER = "____________________________________________________________";
+    public static final String LONG_DIVIDER = "_______________________________________________________________________"
             + "_________________________________________________";
-    private static final String LOGO =
+    public static final String LOGO =
                 "                                    ___________\n"
             +   "                                    |  __ |  _ \\\n"
             +   " ____  ______      _____   ________ |  |__| | | |\n"
             + "|  __|/ __ \\ \\    / /| |  /  _____/ |   __| | | |\n"
             + "| |  |  __/ \\ \\__/ / | | /_____  /  |  |__| |_| |\n"
             + "| |   \\___|  \\____/  |_|/_______/   |_____|_____/\n";
-    private static final String HELP_MESSAGE = "Type help for all available commands";
-    private static final String BYE_MESSAGE = " Bye. Hope to see you again soon!";
+    public static final String HELP_MESSAGE = "Type help for all available commands";
+    public static final String BYE_MESSAGE = " Bye. Hope to see you again soon!";
+    public static final String OOPS_PREFIX = " ☹ OOPS!!!";
+    public static final String OOPS_SUFFIX = ":-(";
 
+    public static final String FAILED_PARSE_EXCEPTION = OOPS_PREFIX + " I'm sorry, but I don't know what that means "
+            + OOPS_SUFFIX;
+    public static final String NO_SUBJECT_EXCEPTION = OOPS_PREFIX + " I'm sorry, but I can't find that subject "
+            + OOPS_SUFFIX;
+    public static final String REPEATED_SUBJECT_EXCEPTION = OOPS_PREFIX + " I'm sorry, but subject is already "
+            + "in the list " + OOPS_SUFFIX;
+    public static final String REPEATED_TOPIC_EXCEPTION = OOPS_PREFIX + " I'm sorry, but topic is already in the list "
+            + OOPS_SUFFIX;
+    public static final String REPEATED_FLASHCARD_EXCEPTION = OOPS_PREFIX + " I'm sorry, but flashcard is already "
+            + "in the list " + OOPS_SUFFIX;
+    public static final String TODO_EXCEPTION = OOPS_PREFIX + " The format should be: todo <taskname>";
+    public static final String DEADLINE_EXCEPTION = OOPS_PREFIX + " The format should be: deadline <taskname> /by "
+            + "<datetime>";
+    public static final String EVENT_EXCEPTION = OOPS_PREFIX + " The format should be: event <taskname> /at <datetime>";
+    public static final String INDEX_FORMAT_EXCEPTION = OOPS_PREFIX + " Invalid index format entered.";
+    public static final String INDEX_OUT_OF_BOUND_EXCEPTION = OOPS_PREFIX + " The index you entered does not exist.";
+    public static final String NO_FLASHCARD_EXCEPTION = "There are no flashcards present yet!";
+    public static final String NO_TOPIC_EXCEPTION = "There are no topics present yet!";
+    public static final String TOPIC_NOT_FOUND_EXCEPTION = OOPS_PREFIX + " I'm sorry, but I can't find that topic "
+            + OOPS_SUFFIX;
+    public static final String INVALID_SUBJECT_EXCEPTION = "Please enter a subject!";
+    public static final String INVALID_TOPIC_EXCEPTION = "Please enter a topic!";
+    public static final String INVALID_DATETIME_EXCEPTION = "Enter date and time in the following format: "
+            + "HH:MM DD-MM-YYYY";
+    public static final String DATA_LOADING_EXCEPTION = "Error loading saved data from the disk.";
+    public static final String WRITING_EXCEPTION = "Writing to file failed.";
 
     private static Scanner scan = new Scanner(System.in);
 
@@ -118,64 +146,16 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
-    public static String printFailedParseError() {
-        return (DIVIDER + "\n"
-                + " ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n"
-                + DIVIDER + "\n");
+    public static void printError(Exception err) {
+        System.out.println(DIVIDER);
+        System.out.println(err.getMessage());
+        System.out.println(DIVIDER);
     }
 
-    public static String printError(Exception err) {
-        return (DIVIDER + "\n"
-                + err.getMessage() + "\n"
-                + DIVIDER + "\n");
-    }
-
-    public static String printNoSubjectError() {
-        return (DIVIDER + "\n"
-                + " ☹ OOPS!!! I'm sorry, but I can't find that subject :-(\n"
-                + DIVIDER + "\n");
-    }
-
-    public static String printRepeatedSubjectError() {
-        return (DIVIDER + "\n"
-                + " ☹ OOPS!!! I'm sorry, but subject is already in the list :-(\n"
-                + DIVIDER + "\n");
-    }
-
-    public static String printRepeatedFlashcardError() {
-        return (DIVIDER + "\n"
-                + " ☹ OOPS!!! I'm sorry, but flashcard is already in the list :-(\n"
-                + DIVIDER + "\n");
-    }
-
-    public static String printTodoError() {
-        return (DIVIDER + "\n"
-                + " ☹ OOPS!!! The description of a todo cannot be empty.\n"
-                + DIVIDER + "\n");
-    }
-
-    public static String printDeadlineError() {
-        return (DIVIDER + "\n"
-                + " ☹ OOPS!!! The description of a deadline cannot be empty.\n"
-                + DIVIDER + "\n");
-    }
-
-    public static String printEventError() {
-        return (DIVIDER + "\n"
-                + " ☹ OOPS!!! The description of a event cannot be empty.\n"
-                + DIVIDER + "\n");
-    }
-
-    public static String printIndexError() {
-        return (DIVIDER + "\n"
-                + " ☹ OOPS!!! Invalid index format entered.\n"
-                + DIVIDER + "\n");
-    }
-
-    public static String printOutOfBoundsError() {
-        return (DIVIDER + "\n"
-                + " ☹ OOPS!!! The index you entered does not exist.\n"
-                + DIVIDER + "\n");
+    public static void printErrorMsg(String msg) {
+        System.out.println(DIVIDER);
+        System.out.println(msg);
+        System.out.println(DIVIDER);
     }
 
     public static void printFindTask(TaskList taskList, String find) {
@@ -228,18 +208,6 @@ public class Ui {
         if (taskPresent == 0) {
             System.out.println(" Here are the matching task(s) in your list:");
         }
-    }
-
-    public static String printDataLoadingError() {
-        return (DIVIDER + "\n"
-                + "Error loading saved data from the disk." + "\n"
-                + DIVIDER + "\n");
-    }
-
-    public static String printWritingError() {
-        return (DIVIDER + "\n"
-                + "Writing to file failed." + "\n"
-                + DIVIDER + "\n");
     }
 
     public static void printGoToSubject(Subject subject) {
@@ -308,17 +276,6 @@ public class Ui {
         printHelpMessage();
     }
 
-    public static String printNoTopicError() {
-        return (DIVIDER + "\n"
-                + " ☹ OOPS!!! I'm sorry, but I can't find that topic :-(\n"
-                + DIVIDER + "\n");
-    }
-
-    public static String printRepeatedTopicError() {
-        return (DIVIDER + "\n"
-                + " ☹ OOPS!!! I'm sorry, but that topic is already in the list :-(\n"
-                + DIVIDER + "\n");
-    }
 
     public static void printTopicDelete(Topic topic, int total) {
         System.out.println(DIVIDER);
@@ -456,38 +413,12 @@ public class Ui {
 
     public static void printQuestion(String question) {
         System.out.println("Question: " + question);
-
-
     }
 
     public static void printBackToTopicsAndTasks() {
-        System.out.println(DIVIDER + "\n"
-                + "Going back to the topics and tasks list.\n"
-                + DIVIDER + "\n");
-    }
-
-    public static String printNoFlashcardsError() {
-        return (DIVIDER + "\n"
-                + "There are no flashcards present yet!\n"
-                + DIVIDER + "\n");
-    }
-
-    public static String printNoTopicsError() {
-        return (DIVIDER + "\n"
-                + "There are no topics present yet!\n"
-                + DIVIDER + "\n");
-    }
-
-    public static String printInvalidSubjectError() {
-        return (DIVIDER + "\n"
-                + "Please enter a subject!\n"
-                + DIVIDER + "\n");
-    }
-
-    public static String printInvalidTopicError() {
-        return (DIVIDER + "\n"
-                + "Please enter a topic!\n"
-                + DIVIDER + "\n");
+        System.out.println(DIVIDER);
+        System.out.println("Going back to the topics and tasks list.");
+        System.out.println(DIVIDER);
     }
 
     public static void printTask(Task task, TaskList taskList) {
@@ -499,15 +430,7 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
-
-    public static String printInvalidFormatError() {
-        return (DIVIDER + "\n"
-                + "Enter date and time in the following format: HH:MM DD-MM-YYY\n"
-                + DIVIDER + "\n");
-    }
-
     public static void printUpcomingTasks(SubjectList subjects) {
-
         LocalDateTime nextWeek = LocalDateTime.now().plusDays(7);
         for (Subject subject : subjects.getList()) {
             List<Task> taskList = new ArrayList<>();
@@ -534,12 +457,8 @@ public class Ui {
         }
     }
 
-
-    public static String printRepeatedDateTimeError(Task task) {
-        return  DIVIDER + "\n"
-                + "There is another task at that date and time:\n"
-                + task + System.lineSeparator()
-                + DIVIDER;
+    public static String repeatedDateTimeException(Task task) {
+        return  "There is another task at that date and time:\n" + task;
     }
 
     public static void printExportSuccessful(File exportFile) {

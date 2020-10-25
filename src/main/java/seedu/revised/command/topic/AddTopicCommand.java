@@ -27,15 +27,15 @@ public class AddTopicCommand extends TopicCommand {
         int endOfMessage = fullCommand.length();
         TopicList topicList = subject.getTopics();
         if (endOfMessage <= startOfMessage) {
-            throw new InvalidTopicException(Ui.printInvalidTopicError());
+            throw new InvalidTopicException(Ui.INVALID_TOPIC_EXCEPTION);
         }
-        String title = fullCommand.substring(startOfMessage, endOfMessage);
+        String title = fullCommand.substring(startOfMessage, endOfMessage).strip();
         if (title.isEmpty()) {
-            throw new InvalidTopicException(Ui.printInvalidTopicError());
+            throw new InvalidTopicException(Ui.INVALID_TOPIC_EXCEPTION);
         }
         for (Topic topic : topicList.getList()) {
             if (topic.getTitle().equals(title)) {
-                throw new RepeatedTopicException(Ui.printRepeatedTopicError());
+                throw new RepeatedTopicException(Ui.REPEATED_TOPIC_EXCEPTION);
             }
         }
         Topic t = new Topic(title);

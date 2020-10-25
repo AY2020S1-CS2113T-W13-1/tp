@@ -20,16 +20,16 @@ public class AddFlashcardCommand extends FlashcardCommand {
         int startOfAnswer = endOfQuestion + 2;
         int endOfMessage = fullCommand.length();
         if (endOfMessage <= startOfMessage) {
-            throw new NoFlashcardException(Ui.printNoFlashcardsError());
+            throw new NoFlashcardException(Ui.NO_FLASHCARD_EXCEPTION);
         }
         String question = fullCommand.substring(startOfMessage, endOfQuestion);
         String answer = fullCommand.substring(startOfAnswer, endOfMessage);
         if (question.isEmpty() || answer.isEmpty()) {
-            throw new NoFlashcardException(Ui.printNoFlashcardsError());
+            throw new NoFlashcardException(Ui.NO_FLASHCARD_EXCEPTION);
         }
         for (Flashcard flashcard : topic.getFlashcards()) {
             if (flashcard.getQuestion().equals(question) && flashcard.getAnswer().equals(answer)) {
-                throw new RepeatedFlashcardException(Ui.printRepeatedFlashcardError());
+                throw new RepeatedFlashcardException(Ui.REPEATED_FLASHCARD_EXCEPTION);
             }
         }
         Flashcard t = new Flashcard(question, answer);
