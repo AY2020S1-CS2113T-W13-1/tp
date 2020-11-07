@@ -143,22 +143,21 @@ ____________________________________________________________
 Here's a list of all items:
 (You are currently here)
 ├─ 1. math
-│  │  Topics
+│  Topics
 │  ├─ 1. geometry
 │  ├─ 2. ratio
-│  ├─ 3. speed
-│  │  └─ 2 Flashcards
-│  │  Tasks
+│  └─ 3. speed
+│     └─ 2 Flashcards
+│  Tasks
 │  ├─ 1. [E][?] test (at: 12:00 PM 12 Dec 2020)
 │  └─ 2. [D][?] assignment (by: 12:00 PM 13 Dec 2020)
 └─ 2. science
-   │  Topics
+   Topics
    ├─ 1. ecology
    │  └─ 1 Flashcard
-   ├─ 2. plant reproduction
-   │  Tasks
+   └─ 2. plant reproduction
+   Tasks
    └─ 1. [T][?] study for science
-____________________________________________________________
 
 ```
 
@@ -381,25 +380,23 @@ Expected output:
 ```
 ____________________________________________________________
 Here's a list of all items:
-(You are currently here)
-├─ 1. math
-│  │  Topics
+├─ 1. math (You are currently here)
+│  Topics
 │  ├─ 1. geometry
 │  ├─ 2. ratio
-│  ├─ 3. speed
-│  │  └─ 2 Flashcards
-│  │  Tasks
+│  └─ 3. speed
+│     └─ 2 Flashcards
+│  Tasks
 │  ├─ 1. [E][?] test (at: 12:00 PM 12 Dec 2020)
 │  └─ 2. [D][?] assignment (by: 12:00 PM 13 Dec 2020)
 └─ 2. science
-   │  Topics
+   Topics
    ├─ 1. ecology
    │  └─ 1 Flashcard
-   ├─ 2. plant reproduction
-   │  Tasks
+   └─ 2. plant reproduction
+   Tasks
    └─ 1. [T][?] study for science
 ____________________________________________________________
-
 ```
 #### 3.2.4 Adding a topic: `add` <a name="add-topic"></a>
 
@@ -753,25 +750,23 @@ Expected output:
 ```
 ____________________________________________________________
 Here's a list of all items:
-(You are currently here)
-├─ 1. math
-│  │  Topics
+├─ 1. math 
+│  Topics
 │  ├─ 1. geometry
 │  ├─ 2. ratio
-│  ├─ 3. speed
-│  │  └─ 2 Flashcards
-│  │  Tasks
+│  └─ 3. speed (You are currently here)
+│     └─ 2 Flashcards
+│  Tasks
 │  ├─ 1. [E][?] test (at: 12:00 PM 12 Dec 2020)
 │  └─ 2. [D][?] assignment (by: 12:00 PM 13 Dec 2020)
 └─ 2. science
-   │  Topics
+   Topics
    ├─ 1. ecology
    │  └─ 1 Flashcard
-   ├─ 2. plant reproduction
-   │  Tasks
+   └─ 2. plant reproduction
+   Tasks
    └─ 1. [T][?] study for science
 ____________________________________________________________
-
 ```
 
 #### 3.3.4 `add` - Adding a flashcard
